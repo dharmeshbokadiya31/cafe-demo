@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import './fonts.css';
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Graphik';
+  font-size: 14px;
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.bg-overlay {
+background: radial-gradient(100% 687.99% at 0% 100%, #000000 25.03%, rgba(0, 0, 0, 0.32) 53.12%); 
+}
+
+.cover {
+  object-fit: cover;
+  object-position: center;
+}
