@@ -53,7 +53,7 @@ const Cart = () => {
                 <Disclosure.Panel className="pt-4">
                   <div className="grid grid-cols-1 shadow-box rounded-lg">
                     {cartItemsArr?.length ? 
-                      cartItemsArr.map(it => <CartCard title={it.title} price={`₹${it.price}`} count={it.count} showCount />) :
+                      cartItemsArr.map(it => <CartCard title={it.title} price={`₹${it.price}`} count={it.count} showCount key={it.id} />) :
                     "NO ITEMS FOUND"}
                     <Link href={routes.cart} className="text-[#76DFE5] underline hover:text-cyan p-3 text-sm" >Add cooking instruction</Link>
                   </div>

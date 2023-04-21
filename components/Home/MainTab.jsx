@@ -39,6 +39,7 @@ const MainTab = () => {
               <Disclosure.Panel className="grid grid-cols-1 gap-4 pt-4">
               {itemArray?.map(item => 
                 <CardSm
+                  key={item.id}
                   image={`/images/${item.image}`}
                   title={item.title}
                   price={`₹${item.price}`}
@@ -58,6 +59,7 @@ const MainTab = () => {
               <Disclosure.Panel className="grid grid-cols-1 gap-4 pt-4">
               {itemArrayDown?.map(item => 
                 <CardSm
+                  key={item.id}
                   image={`/images/${item.image}`}
                   title={item.title}
                   price={`₹${item.price}`}

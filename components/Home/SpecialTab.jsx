@@ -46,6 +46,7 @@ const SpecialTab = () => {
               <Disclosure.Panel className="grid grid-cols-2 gap-4 pt-4">
                 {itemArray?.map(item => 
                   <Card
+                    key={item.id}
                     image={`/images/${item.image}`}
                     title={item.title}
                     price={`₹${item.price}`}

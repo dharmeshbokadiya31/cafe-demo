@@ -3,10 +3,9 @@ import CheckIcon from "@/icons/checkIcon";
 import React from "react";
 import NumberButton from "./NumberButton";
 
-const CartCard = ({ title, price, count, showCount }) => {
+const CartCard = ({ title, price, count, showCount, key }) => {
   return (
-    <>
-      <div className="relative flex items-start gap-4 rounded-md overflow-hidden p-3">
+      <div className="relative flex items-start gap-4 rounded-md overflow-hidden p-3" key={key}>
         <div className="flex gap-2 items-center justify-between w-full">
           <div className="flex items-center justify-between gap-3">
             <CheckIcon />
@@ -18,7 +17,6 @@ const CartCard = ({ title, price, count, showCount }) => {
           {!showCount ? <div className="font-medium text-gray">{count}</div> : <NumberButton count={count} />}
         </div>
       </div>
-    </>
   );
 };
 

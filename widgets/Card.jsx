@@ -3,9 +3,9 @@ import CheckIcon from "@/icons/checkIcon";
 import React from "react";
 import AddButton from "./AddButton";
 
-const Card = ({ image, title, price, onClick = () => false }) => {
+const Card = ({ image, title, price, onClick = () => false, key }) => {
   return (
-    <div className="relative rounded-md overflow-hidden shadow-card-in bg-card">
+    <div className="relative rounded-md overflow-hidden shadow-card-in bg-card" key={key}>
       <img src={image} className="h-32 cover" alt="" />
       <div className="flex flex-col gap-2 p-2">
         <div className="flex items-center gap-1">
