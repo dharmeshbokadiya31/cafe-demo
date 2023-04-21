@@ -1,12 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
-import AccHead from "@/widgets/AccHead";
-import CheckIcon from "@/icons/checkIcon";
-import AddButton from "@/widgets/AddButton";
 import Card from "@/widgets/Card";
+import AccHead from "@/widgets/AccHead";
+import { CART_ITEMS } from "@/utils/constant";
+import AppContext from "@/utils/appContext";
+
+const itemArray = [
+  { id: 1, image: "chocolate_bowl.jpeg", title: "Chocolate Bowl", price: 299 },
+  { id: 2, image: "maui-acai_bowl.jpg", title: "Sunset Bowl", price: 300 },
+  { id: 3, image: "chocolate_bowl.jpeg", title: "Strawberry Bowl", price: 295 },
+  { id: 4, image: "maui-acai_bowl.jpg", title: "Ice Cream Bowl", price: 599 }
+]
 
 const SpecialTab = () => {
+  const context = useContext(AppContext)
+
+  useEffect(() => {
+    let cartItems = localStorage.getItem(CART_ITEMS) && JSON.parse(localStorage.getItem(CART_ITEMS))
+    context.setCartItems(cartItems)
+  }, [])
+
+  const handleAddItem = (item) => {
+    let cartItems = JSON.parse(localStorage.getItem(CART_ITEMS))
+      let newItems = cartItems?.length ? [...cartItems, item] : [item]
+      localStorage.setItem(CART_ITEMS, JSON.stringify(newItems))
+      context.setCartItems(newItems)
+  }
+
   return (
     <>
       <div className="relative h-32 rounded-md overflow-hidden flex items-end p-4 shadow-thumb-img">
@@ -23,26 +44,13 @@ const SpecialTab = () => {
             <>
               <AccHead title="Today’s Special" open={open} />
               <Disclosure.Panel className="grid grid-cols-2 gap-4 pt-4">
-                <Card
-                  image="/images/chocolate_bowl.jpeg"
-                  title="Chocolate Bowl"
-                  price="₹299"
-                />
-                <Card
-                  image="/images/maui-acai_bowl.jpg"
-                  title=" Sunset Acai Bowl"
-                  price="₹299"
-                />
-                <Card
-                  image="/images/chocolate_bowl.jpeg"
-                  title="Chocolate Bowl"
-                  price="₹299"
-                />
-                <Card
-                  image="/images/maui-acai_bowl.jpg"
-                  title=" Sunset Acai Bowl"
-                  price="₹299"
-                />
+                {itemArray?.map(item => 
+                  <Card
+                    image={`/images/${item.image}`}
+                    title={item.title}
+                    price={`₹${item.price}`}
+                    onClick={() => handleAddItem(item)}
+                  />)}
               </Disclosure.Panel>
             </>
           )}

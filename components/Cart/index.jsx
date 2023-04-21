@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Button from "@/widgets/Button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TbArrowLeft } from "react-icons/tb";
 import ChatIcon from "@/icons/chatIcon";
 
@@ -9,8 +9,25 @@ import AccHead from "@/widgets/AccHead";
 import routes from "@/utils/routes";
 import CartCard from "@/widgets/CartCard";
 import Link from "next/link";
+import { CART_ITEMS } from "@/utils/constant";
 
 const Cart = () => {
+
+  const [cartItemsArr, setCartItemsArr] = useState([])
+  useEffect(() => {
+    let cartArray = JSON.parse(localStorage.getItem(CART_ITEMS))
+    const uniqueArr = cartArray.reduce((acc, cur) => {
+      const index = acc.findIndex(obj => obj.id === cur.id);
+      if (index === -1) {
+        acc.push({ ...cur, count: 1 });
+      } else {
+        acc[index].count++;
+      }
+      return acc;
+    }, []);
+    setCartItemsArr(uniqueArr)
+  }, [])
+
   return (
     <div className="overflow-auto scroll-hidden h-[calc(100%-62px)]">
       <div className="sticky top-0 z-[20] bg-head rounded-b-lg shadow-out">
@@ -35,9 +52,9 @@ const Cart = () => {
                 <AccHead title="Current order" open={open} />
                 <Disclosure.Panel className="pt-4">
                   <div className="grid grid-cols-1 shadow-box rounded-lg">
-                    <CartCard title="Sunrise Acai Bowl" price="₹299" />
-                    <CartCard title="Sunrise Acai Bowl" price="₹299" />
-                    <CartCard title="Sunrise Acai Bowl" price="₹299" />
+                    {cartItemsArr?.length ? 
+                      cartItemsArr.map(it => <CartCard title={it.title} price={`₹${it.price}`} count={it.count} showCount />) :
+                    "NO ITEMS FOUND"}
                     <Link href={routes.cart} className="text-[#76DFE5] underline hover:text-cyan p-3 text-sm" >Add cooking instruction</Link>
                   </div>
                 </Disclosure.Panel>

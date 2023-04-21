@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import Button from "@/widgets/Button";
-import React from "react";
+import React, { useContext } from "react";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import { FiBookOpen } from "react-icons/fi";
 import ThunderIcon from "@/icons/thunderIcon";
 import routes from "@/utils/routes";
 import { useRouter } from "next/router"
+import AppContext from "@/utils/appContext";
 
 const MainFooter = () => {
-
+  const context = useContext(AppContext)
   const router = useRouter()
 
   return (
@@ -32,6 +33,7 @@ const MainFooter = () => {
           active={router.pathname === routes.cart ? true : false}
           icon={<RiShoppingBag3Line />}
           className="w-[30px] !px-0 !text-base"
+          cartLength={context?.cartItems?.length}
         />
       </div>
     </div>

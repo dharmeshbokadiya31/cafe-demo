@@ -12,7 +12,7 @@ const NumberButton = ({ className = "", title, ...other }) => {
       <button type="button" className="h-6 w-6 bg-foot shadow-in hover:shadow-out focus:shadow-in flex items-center justify-center text-cyan rounded-full">
         <HiMinus />
       </button>
-      <span>1</span>
+      <span>{other.count}</span>
       <button type="button" className="h-6 w-6 bg-foot shadow-in hover:shadow-out focus:shadow-in flex items-center justify-center text-cyan rounded-full">
         <HiPlus />
       </button>

@@ -3,7 +3,7 @@ import CheckIcon from "@/icons/checkIcon";
 import React from "react";
 import AddButton from "./AddButton";
 
-const CardSm = ({ image, title, price, cardDetail = false }) => {
+const CardSm = ({ image, title, price, cardDetail = false, onClick = () => false }) => {
   return (
     <>
       <div className="relative flex items-start gap-4 rounded-md overflow-hidden shadow-card-in p-3 bg-card">
@@ -15,7 +15,7 @@ const CardSm = ({ image, title, price, cardDetail = false }) => {
               <CheckIcon />
               <h3 className="font-medium text-gray text-[13px]">{price}</h3>
             </div>
-            <AddButton />
+            <AddButton onClick={onClick} />
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@ const CardSm = ({ image, title, price, cardDetail = false }) => {
                 <CheckIcon />
                 <h3 className="font-medium text-gray text-[13px]">{price}</h3>
               </div>
-              <AddButton />
+              <AddButton onClick={onClick} />
             </div>
           </div>
         </div>
