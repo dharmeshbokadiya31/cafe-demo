@@ -15,16 +15,19 @@ const Cart = () => {
 
   const [cartItemsArr, setCartItemsArr] = useState([])
   useEffect(() => {
-    let cartArray = JSON.parse(localStorage.getItem(CART_ITEMS))
-    const uniqueArr = cartArray.reduce((acc, cur) => {
-      const index = acc.findIndex(obj => obj.id === cur.id);
-      if (index === -1) {
-        acc.push({ ...cur, count: 1 });
-      } else {
-        acc[index].count++;
-      }
-      return acc;
-    }, []);
+    let uniqueArr = []
+    if (localStorage.getItem(CART_ITEMS)) {
+      let cartArray = JSON.parse(localStorage.getItem(CART_ITEMS))
+      uniqueArr = cartArray.reduce((acc, cur) => {
+        const index = acc.findIndex(obj => obj.id === cur.id);
+        if (index === -1) {
+          acc.push({ ...cur, count: 1 });
+        } else {
+          acc[index].count++;
+        }
+        return acc;
+      }, []);
+    }
     setCartItemsArr(uniqueArr)
   }, [])
 
