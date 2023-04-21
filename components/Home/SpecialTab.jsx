@@ -18,14 +18,14 @@ const SpecialTab = () => {
 
   useEffect(() => {
     let cartItems = localStorage.getItem(CART_ITEMS) && JSON.parse(localStorage.getItem(CART_ITEMS))
-    context.setCartItems(cartItems)
+    context?.setCartItems(cartItems || [])
   }, [])
 
   const handleAddItem = (item) => {
     let cartItems = JSON.parse(localStorage.getItem(CART_ITEMS))
       let newItems = cartItems?.length ? [...cartItems, item] : [item]
       localStorage.setItem(CART_ITEMS, JSON.stringify(newItems))
-      context.setCartItems(newItems)
+      context?.setCartItems(newItems)
   }
 
   return (

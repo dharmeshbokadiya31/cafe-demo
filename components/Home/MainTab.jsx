@@ -26,7 +26,7 @@ const MainTab = () => {
     let cartItems = JSON.parse(localStorage.getItem(CART_ITEMS))
     let newItems = cartItems?.length ? [...cartItems, item] : [item]
     localStorage.setItem(CART_ITEMS, JSON.stringify(newItems))
-    context.setCartItems(newItems)
+    context?.setCartItems(newItems)
   }
 
   return (

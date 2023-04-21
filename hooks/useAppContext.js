@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 const useAppContext = () => {
-  const [cartItems, setCartItems] = useState(0)
+  const [cartItems, setCartItems] = useState([])
 
   return {
     cartItems,
